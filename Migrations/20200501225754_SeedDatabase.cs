@@ -18,8 +18,8 @@ namespace vehicle.Migrations
              migrationBuilder.Sql("INSERT INTO MODELS (Name, MakeId) VALUES ('Make2-ModelB', (SELECT ID FROM MAKES WHERE Name = 'Make2'))");   
              migrationBuilder.Sql("INSERT INTO MODELS (Name, MakeId) VALUES ('Make2-ModelC', (SELECT ID FROM MAKES WHERE Name = 'Make2'))");
 
-             migrationBuilder.Sql("INSERT INTO MODELS (Name, MakeId) VALUES ('Make1-ModelA', (SELECT ID FROM MAKES WHERE Name = 'Make3'))");   
-             migrationBuilder.Sql("INSERT INTO MODELS (Name, MakeId) VALUES ('Make2-ModelB', (SELECT ID FROM MAKES WHERE Name = 'Make3'))");   
+             migrationBuilder.Sql("INSERT INTO MODELS (Name, MakeId) VALUES ('Make3-ModelA', (SELECT ID FROM MAKES WHERE Name = 'Make3'))");   
+             migrationBuilder.Sql("INSERT INTO MODELS (Name, MakeId) VALUES ('Make3-ModelB', (SELECT ID FROM MAKES WHERE Name = 'Make3'))");   
              migrationBuilder.Sql("INSERT INTO MODELS (Name, MakeId) VALUES ('Make3-ModelC', (SELECT ID FROM MAKES WHERE Name = 'Make3'))"); 
 
         }
