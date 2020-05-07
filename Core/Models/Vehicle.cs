@@ -4,7 +4,7 @@ using System;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
 
-namespace VehicleFactory.Models
+namespace VehicleFactory.Core.Models
 {
     [Table("Vehicles")]
     public class Vehicle

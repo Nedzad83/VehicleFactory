@@ -1,4 +1,4 @@
-namespace VehicleFactory.Models
+namespace VehicleFactory.Core.Models
 {
     public class VehicleFeature
     {

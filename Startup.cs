@@ -8,6 +8,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using VehicleFactory.Persistence;
 using AutoMapper;
+using VehicleFactory.Core;
 
 namespace vehicle
 {
@@ -23,6 +24,10 @@ namespace vehicle
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddScoped<IVehicleRepository, VehicleRepository>();
+            
+            services.AddScoped<IUnitOfWork, UnitOfWork>();
+
             services.AddAutoMapper(typeof(Startup));
 
             services.AddDbContext<VehicleDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("Default")));    

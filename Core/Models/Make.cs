@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using VehicleFactory.Controllers.Resources;
 
-namespace VehicleFactory.Models
+namespace VehicleFactory.Core.Models
 {
     public class Make
     {
