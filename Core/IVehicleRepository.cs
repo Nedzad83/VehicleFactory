@@ -1,5 +1,5 @@
 using System.Threading.Tasks;
-using VehicleFactory.Models;
+using VehicleFactory.Core.Models;
 
 namespace VehicleFactory.Core
 {

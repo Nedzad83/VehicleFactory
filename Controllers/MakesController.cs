@@ -4,7 +4,7 @@ using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using VehicleFactory.Controllers.Resources;
-using VehicleFactory.Models;
+using VehicleFactory.Core.Models;
 using VehicleFactory.Persistence;
 
 namespace VehicleFactory.Controllers

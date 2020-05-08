@@ -82,6 +82,8 @@ namespace vehicle
                     spa.UseAngularCliServer(npmScript: "start");
                 }
             });
+
+            app.UseCors();
         }
     }
 }

@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using VehicleFactory.Models;
 
 namespace VehicleFactory.Controllers.Resources
 {

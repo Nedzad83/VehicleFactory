@@ -1,5 +1,5 @@
 using Microsoft.EntityFrameworkCore;
-using VehicleFactory.Models;
+using VehicleFactory.Core.Models;
 
 namespace VehicleFactory.Persistence
 {

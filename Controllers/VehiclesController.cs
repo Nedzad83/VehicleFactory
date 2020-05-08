@@ -1,10 +1,12 @@
 using System;
+using System.Net.Mime;
 using System.Threading.Tasks;
 using AutoMapper;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using VehicleFactory.Controllers.Resources;
 using VehicleFactory.Core;
-using VehicleFactory.Models;
+using VehicleFactory.Core.Models;
 
 namespace VehicleFactory.Controllers
 {
@@ -21,26 +23,22 @@ namespace VehicleFactory.Controllers
             this.mapper = mapper;
         }
 
+        [HttpPost]
         public async Task<IActionResult> CreateVehicle([FromBody] SaveVehicleResource vehicleResource)
         {
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
 
-            var model = await repository.GetVehicle(vehicleResource.ModelId);
-            if (model == null)
-            {
-                ModelState.AddModelError("ModelId", "Invalid modelId ");
-                return BadRequest(ModelState);
-            }
-
             var vehicle = mapper.Map<SaveVehicleResource, Vehicle>(vehicleResource);
             vehicle.LastUpdate = DateTime.Now;
+
             repository.Add(vehicle);
             await unitOfWork.CompleteAsync();
 
             vehicle = await repository.GetVehicle(vehicle.Id);
 
             var result = mapper.Map<Vehicle, VehicleResource>(vehicle);
+
             return Ok(result);
         }
 

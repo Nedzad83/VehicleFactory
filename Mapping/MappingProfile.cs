@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using AutoMapper;
 using VehicleFactory.Controllers.Resources;
-using VehicleFactory.Models;
+using VehicleFactory.Core.Models;
 
 namespace VehicleFactory.Mapping
 {
