@@ -1,4 +1,3 @@
-import { ToastrModule } from 'ngx-toastr';
 import { VehicleService } from './../../services/vehicle.service';
 import { Component, OnInit } from '@angular/core';
 import { SaveVehicle } from '../models/vehicle';
@@ -59,12 +58,7 @@ export class VehicleFormComponent implements OnInit {
   submit() { 
     this.vehicleService.create(this.vehicle)
       .subscribe(
-        x => console.log(x),
-        err => { 
-          this.toastyService.error('An unexpected error happened.', 'Error', {
-            timeOut: 3000
-          });
-        }
+        x => console.log(x)
       );
   }
 
