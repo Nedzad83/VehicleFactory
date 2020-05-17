@@ -18,6 +18,7 @@ import { FetchDataComponent } from './fetch-data/fetch-data.component';
 import { VehicleFormComponent } from './vehicle-form/vehicle-form.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CommonModule } from '@angular/common';
+import { VehicleListComponent } from './vehicle-list/vehicle-list.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { CommonModule } from '@angular/common';
     HomeComponent,
     CounterComponent,
     FetchDataComponent,
-    VehicleFormComponent
+    VehicleFormComponent,
+    VehicleListComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -40,6 +42,7 @@ import { CommonModule } from '@angular/common';
         { path: 'counter', component: CounterComponent },
         { path: 'vehicles/new', component: VehicleFormComponent },
         { path: 'vehicles/:id', component: VehicleFormComponent },
+        { path: 'vehicles', component: VehicleListComponent },
         { path: 'fetch-data', component: FetchDataComponent },
       ]),
   ],

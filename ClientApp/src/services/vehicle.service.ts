@@ -19,6 +19,10 @@ export class VehicleService {
     return this.http.get('/api/features');
   }
 
+  getVehicles() { 
+    return this.http.get('/api/vehicles/');
+  }
+
   create(vehicle: SaveVehicle) { 
     const headers = new HttpHeaders()
       .set('Content-Type', 'application/json')
