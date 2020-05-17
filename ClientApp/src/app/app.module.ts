@@ -38,7 +38,8 @@ import { CommonModule } from '@angular/common';
       RouterModule.forRoot([
         { path: '', component: HomeComponent, pathMatch: 'full' },
         { path: 'counter', component: CounterComponent },
-        { path: 'vehicle/form', component: VehicleFormComponent },
+        { path: 'vehicles/new', component: VehicleFormComponent },
+        { path: 'vehicles/:id', component: VehicleFormComponent },
         { path: 'fetch-data', component: FetchDataComponent },
       ]),
   ],

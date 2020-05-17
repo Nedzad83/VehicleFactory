@@ -54,7 +54,7 @@ namespace VehicleFactory.Controllers
 
             if (vehicle == null)
                 return NotFound();
-            mapper.Map<SaveVehicleResource, Vehicle>(vehicleResource, vehicle);
+            //mapper.Map<SaveVehicleResource, Vehicle>(vehicleResource, vehicle);
             vehicle.LastUpdate = DateTime.Now;
             await unitOfWork.CompleteAsync();
 
