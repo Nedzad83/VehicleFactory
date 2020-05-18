@@ -1,4 +1,6 @@
+using System.Xml;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using VehicleFactory.Controllers.Resources;
@@ -28,14 +30,22 @@ namespace VehicleFactory.Persistence
                      .SingleOrDefaultAsync(v => v.Id == id);
         }
 
-        public async Task<IEnumerable<Vehicle>> GetVehicles() 
+        public async Task<IEnumerable<Vehicle>> GetVehicles(Filter filter) 
         {
-            return await context.Vehicles
+            var query = context.Vehicles
                     .Include(v => v.Model)
                         .ThenInclude(m => m.Make)
                     .Include(f => f.Features)
                         .ThenInclude(vf => vf.Feature)
-                    .ToListAsync();
+                    .AsQueryable();
+            if (filter.MakeId.HasValue)
+                query = query.Where(x=>x.Model.MakeId == filter.MakeId.Value);
+            
+            if (filter.ModelId.HasValue)
+                query = query.Where(x=>x.ModelId == filter.ModelId.Value);
+
+
+            return await query.ToListAsync();
         }
 
         public void Add(Core.Models.Vehicle vehicle) 

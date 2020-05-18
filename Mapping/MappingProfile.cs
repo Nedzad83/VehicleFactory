@@ -25,6 +25,7 @@ namespace VehicleFactory.Mapping
                  .ForMember(vr => vr.Features, opt => opt.MapFrom(v => v.Features.Select(vf=>new KeyValuePairResource{ Id = vf.Feature.Id, Name = vf.Feature.Name })));
 
             // API resource to Domain class..
+            CreateMap<FilterResource, Filter>();
             CreateMap<SaveVehicleResource, Vehicle>()
                 .ForMember(v=>v.Id, opt=>opt.Ignore())
                 .ForMember(v=>v.ContactName, opt=>opt.MapFrom(vr => vr.Contact.Name))    

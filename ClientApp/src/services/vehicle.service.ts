@@ -7,6 +7,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 })
 export class VehicleService {
 
+  private readonly vehiclesEndpoint = "/api/vehicles";
   constructor(private http: HttpClient) {
 
    }
@@ -19,8 +20,18 @@ export class VehicleService {
     return this.http.get('/api/features');
   }
 
-  getVehicles() { 
-    return this.http.get('/api/vehicles/');
+  getVehicles(filter) { 
+    return this.http.get(this.vehiclesEndpoint + '?' + this.toQueryString(filter));
+  }
+
+  toQueryString(obj) { 
+    var parts = [];
+    for (var prop in obj) { 
+      var value = obj[prop];
+      if (value != null && value != undefined)
+        parts.push(encodeURIComponent(prop) + '=' + encodeURIComponent(value));  // property equals value..
+    }
+    return parts.join('&');
   }
 
   create(vehicle: SaveVehicle) { 
@@ -32,7 +43,7 @@ export class VehicleService {
     vehicle.modelId = JSON.parse(vehicle.modelId.toString());
     vehicle.makeId = JSON.parse(vehicle.makeId.toString())
     
-    return this.http.post('/api/vehicles', vehicle, { headers : headers });
+    return this.http.post(this.vehiclesEndpoint, vehicle, { headers : headers });
   }
 
   update(vehicle: SaveVehicle) { 
@@ -42,14 +53,14 @@ export class VehicleService {
     vehicle.isRegistered = JSON.parse(vehicle.isRegistered.toString());
     vehicle.modelId = JSON.parse(vehicle.modelId.toString());
     vehicle.makeId = JSON.parse(vehicle.makeId.toString())
-    return this.http.put('/api/vehicles/' + vehicle.id, vehicle,  { headers : headers });
+    return this.http.put(this.vehiclesEndpoint + vehicle.id, vehicle,  { headers : headers });
   }
 
   getVehicle(id) { 
-    return this.http.get('/api/vehicles/' + id);
+    return this.http.get(this.vehiclesEndpoint + id);
   }
 
   delete(id) { 
-    return this.http.delete('/api/vehicles/' + id);
+    return this.http.delete(this.vehiclesEndpoint + id);
   }
 } 
