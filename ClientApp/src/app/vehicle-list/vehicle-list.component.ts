@@ -9,9 +9,17 @@ import { Vehicle } from '../models/vehicle';
   styleUrls: ['./vehicle-list.component.css']
 })
 export class VehicleListComponent implements OnInit {
-  vehicles: Vehicle[];
+  queryResult: any = {};
   makes: KeyValuePair[];
-  query: any = { };
+  query: any = {
+    pageSize: 2
+  };
+  columns = [
+    {title: 'Id'},
+    {title: 'Make', key: 'make', isSortable:'true'},
+    {title: 'Model', key: 'model', isSortable:'true'},
+    {title: 'Contact Name', key: 'contactName', isSortable:'true'}
+  ];
   
   constructor(private vehicleService: VehicleService) {
     
@@ -23,10 +31,14 @@ export class VehicleListComponent implements OnInit {
   }
 
   private populateVehicles() {
-    this.vehicleService.getVehicles(this.query).subscribe((vehicles: Vehicle[]) => this.vehicles = vehicles);
+    this.vehicleService.getVehicles(this.query).subscribe((result: any[]) => { 
+      this.queryResult = result;
+    });
   }
 
   onFilterChange() { 
+    this.query.page = 1;
+    this.query.pageSize = 3;
     this.populateVehicles();
   }
 
@@ -37,12 +49,17 @@ export class VehicleListComponent implements OnInit {
 
   sortBy(columnName) { 
     if (this.query.sortBy === columnName) {
-      this.query.IsSortAscending = false;
+      this.query.IsSortAscending = !this.query.IsSortAscending;
     }
     else { 
       this.query.sortBy = columnName;
       this.query.IsSortAscending = true;
     }
+    this.populateVehicles();
+  }
+
+  onPageChange(page) { 
+    this.query.page = page;
     this.populateVehicles();
   }
 

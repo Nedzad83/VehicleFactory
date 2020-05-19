@@ -53,14 +53,14 @@ export class VehicleService {
     vehicle.isRegistered = JSON.parse(vehicle.isRegistered.toString());
     vehicle.modelId = JSON.parse(vehicle.modelId.toString());
     vehicle.makeId = JSON.parse(vehicle.makeId.toString())
-    return this.http.put(this.vehiclesEndpoint + vehicle.id, vehicle,  { headers : headers });
+    return this.http.put(this.vehiclesEndpoint + '/' + vehicle.id, vehicle,  { headers : headers });
   }
 
   getVehicle(id) { 
-    return this.http.get(this.vehiclesEndpoint + id);
+    return this.http.get(this.vehiclesEndpoint + '/'+ id);
   }
 
   delete(id) { 
-    return this.http.delete(this.vehiclesEndpoint + id);
+    return this.http.delete(this.vehiclesEndpoint + '/'+ id);
   }
 } 

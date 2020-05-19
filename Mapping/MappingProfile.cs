@@ -12,6 +12,7 @@ namespace VehicleFactory.Mapping
         public MappingProfile()
         {
             // Domain class to API resource..
+            CreateMap(typeof(QueryResult<>), typeof(QueryResultResource<>));
             CreateMap<Make, MakeResource>();
             CreateMap<Make, KeyValuePairResource>();
             CreateMap<Model, KeyValuePairResource>();

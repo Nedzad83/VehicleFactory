@@ -19,6 +19,7 @@ import { VehicleFormComponent } from './vehicle-form/vehicle-form.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CommonModule } from '@angular/common';
 import { VehicleListComponent } from './vehicle-list/vehicle-list.component';
+import { PaginationComponent } from './pagination/pagination.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { VehicleListComponent } from './vehicle-list/vehicle-list.component';
     CounterComponent,
     FetchDataComponent,
     VehicleFormComponent,
-    VehicleListComponent
+    VehicleListComponent,
+    PaginationComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),

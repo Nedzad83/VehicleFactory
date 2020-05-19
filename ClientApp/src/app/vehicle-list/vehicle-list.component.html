@@ -15,15 +15,23 @@
 <table class="table">
   <thead>
     <tr>
-      <th>Id</th>
-      <th (click)="sortBy('make')">Make</th>
-      <th (click)="sortBy('model')">Model</th>
-      <th (click)="sortBy('contactName')">Contact Name</th>
-      <th></th>
+      <th *ngFor="let c of columns">
+      <div *ngIf="c.isSortable" (click)="sortBy(c.key)">
+        {{c.title}}
+        <i *ngIf="query.sortBy === c.key" 
+            class="fa" 
+            [class.fa-sort-asc]="query.IsSortAscending"
+            [class.fa-sort-desc]="!query.IsSortAscending">
+        </i>
+      </div>
+      <div *ngIf="!c.isSortable">
+        {{c.title}}
+      </div>
+      </th>
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let v of vehicles">
+    <tr *ngFor="let v of queryResult.items">
       <td>{{ v.id }}</td>
       <td>{{ v.make.name }}</td>
       <td>{{ v.model.name }}</td>
@@ -34,3 +42,4 @@
     </tr>
   </tbody>
 </table>
+<pagination [total-items]="queryResult.totalItems" [page-size]="query.pageSize" (page-changed)="onPageChange($event)"></pagination>
