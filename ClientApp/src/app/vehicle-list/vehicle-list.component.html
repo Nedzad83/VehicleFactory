@@ -2,6 +2,8 @@
 <p>
   <a [routerLink]="['/vehicles/new']" class="btn btn-primary">New Vehicle</a>
 </p>
+<body>
+  <link href="//netdna.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" /> 
 <div class="well">
   <div class="form-group">
     <label for="make">Make</label>
@@ -43,3 +45,4 @@
   </tbody>
 </table>
 <pagination [total-items]="queryResult.totalItems" [page-size]="query.pageSize" (page-changed)="onPageChange($event)"></pagination>
+</body>

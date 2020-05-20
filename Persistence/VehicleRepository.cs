@@ -63,14 +63,19 @@ namespace VehicleFactory.Persistence
             return result;
         }
 
-        public void Add(Core.Models.Vehicle vehicle) 
+        public void Add(Vehicle vehicle) 
         {
             context.Add(vehicle);
         }
 
-        public void Remove(Core.Models.Vehicle vehicle)
+        public void Remove(Vehicle vehicle)
         {
             context.Remove(vehicle);
+        }
+
+        public void Update(Vehicle vehicle) 
+        {
+            context.Update(vehicle);
         }
     }
 }

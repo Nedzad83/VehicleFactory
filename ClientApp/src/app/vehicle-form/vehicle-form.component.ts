@@ -37,7 +37,7 @@ export class VehicleFormComponent implements OnInit {
     private vehicleService: VehicleService,
     private toastyService: ToastrService) { 
     route.params.subscribe(p => { 
-      this.vehicle.id = +p['id'];
+      this.vehicle.id = +p['id'] || 0;
     });
   }
 
@@ -95,26 +95,31 @@ export class VehicleFormComponent implements OnInit {
   }
 
   submit() { 
+    //var result$ = (this.vehicle.id) ? this.vehicleService.update(this.vehicle) : this.vehicleService.create(this.vehicle);
     if (this.vehicle.id) {
       this.vehicleService.update(this.vehicle)
         .subscribe(x => {
-          this.toastyService.success("Success", "The vehicle is successfully updated !", { timeOut: 5000 });
+          this.toastyService.success("Success", "The vehicle is successfully updated!", { timeOut: 5000 });
+          this.router.navigate(['/vehicles/', this.vehicle.id]);
         });
     }
     else { 
       this.vehicleService.create(this.vehicle)
-      .subscribe(
-        x => console.log(x)
-      );
+        .subscribe(x => {
+          this.toastyService.success("Success", "The vehicle is successfully created!", { timeOut: 5000 });
+          this.router.navigate(['/vehicles/', this.vehicle.id]);
+        });
+        
     }
+    
   }
 
   delete() { 
     if (confirm("Are you sure ?")) { 
       this.vehicleService.delete(this.vehicle.id)
         .subscribe(x => { 
+          this.toastyService.success("Success", "The vehicle is successfully deleted !", { timeOut: 5000 });         
           this.router.navigate(['']);
-          this.toastyService.success("Success", "The vehicle is successfully deleted !", { timeOut: 5000 });
         });
     }
   }

@@ -10,5 +10,6 @@ namespace VehicleFactory.Core
         Task<QueryResult<Vehicle>> GetVehicles(VehicleQuery filter);
         void Add(Vehicle vehicle);
         void Remove(Vehicle vehicle);
+        void Update(Vehicle vehicle);
     }
 }

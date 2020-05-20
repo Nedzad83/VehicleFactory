@@ -20,6 +20,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CommonModule } from '@angular/common';
 import { VehicleListComponent } from './vehicle-list/vehicle-list.component';
 import { PaginationComponent } from './pagination/pagination.component';
+import { ViewVehicleComponent } from './view-vehicle/view-vehicle.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { PaginationComponent } from './pagination/pagination.component';
     FetchDataComponent,
     VehicleFormComponent,
     VehicleListComponent,
-    PaginationComponent
+    PaginationComponent,
+    ViewVehicleComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -43,7 +45,8 @@ import { PaginationComponent } from './pagination/pagination.component';
         { path: '', component: HomeComponent, pathMatch: 'full' },
         { path: 'counter', component: CounterComponent },
         { path: 'vehicles/new', component: VehicleFormComponent },
-        { path: 'vehicles/:id', component: VehicleFormComponent },
+        { path: 'vehicles/edit/:id', component: VehicleFormComponent },
+        { path: 'vehicles/:id', component: ViewVehicleComponent },
         { path: 'vehicles', component: VehicleListComponent },
         { path: 'fetch-data', component: FetchDataComponent },
       ]),
