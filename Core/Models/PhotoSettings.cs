@@ -9,7 +9,7 @@ namespace VehicleFactory.Core.Models
         public string[] AcceptedFileTypes { get; set; }
 
         public bool IsSupported(string fileName) {
-            return AcceptedFileTypes.Any(x => x == Path.GetExtension(fileName).ToLower();
+            return AcceptedFileTypes.Any(x => x == Path.GetExtension(fileName).ToLower());
         }
     }
 }
