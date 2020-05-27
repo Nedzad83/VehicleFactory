@@ -10,6 +10,7 @@ using VehicleFactory.Persistence;
 using AutoMapper;
 using VehicleFactory.Core;
 using VehicleFactory.Core.Models;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 
 namespace vehicle
 {
@@ -25,15 +26,28 @@ namespace vehicle
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            // 1. Add Authentication Services
+            services.AddAuthentication(options =>
+            {
+                options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+            }).AddJwtBearer(options =>
+            {
+                options.Authority = "https://vehiclefactory.eu.auth0.com/";
+                options.Audience = "https://api.vehicle.com.";
+            });
+
+
+
             services.Configure<PhotoSettings>(Configuration.GetSection("PhotoSettings"));
 
             services.AddScoped<IVehicleRepository, VehicleRepository>();
-            
+
             services.AddScoped<IUnitOfWork, UnitOfWork>();
 
             services.AddAutoMapper(typeof(Startup));
 
-            services.AddDbContext<VehicleDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("Default")));    
+            services.AddDbContext<VehicleDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("Default")));
 
             services.AddControllersWithViews();
             // In production, the Angular files will be served from this directory
@@ -59,12 +73,18 @@ namespace vehicle
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();
+
             if (!env.IsDevelopment())
             {
                 app.UseSpaStaticFiles();
             }
 
             app.UseRouting();
+                       
+            // 2. Enable authentication middleware
+            app.UseAuthentication();
+            
+            app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
             {
@@ -87,6 +107,7 @@ namespace vehicle
             });
 
             app.UseCors();
+
         }
     }
 }

@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using VehicleFactory.Controllers;
@@ -21,6 +22,7 @@ namespace VehicleFactory.Controllers
         }
 
         [HttpGet("/api/features")]
+        [Authorize]
         public async Task<IEnumerable<KeyValuePairResource>> GetFeatures()
         {
             var features = await context.Features.ToListAsync();

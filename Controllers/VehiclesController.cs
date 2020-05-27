@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Mvc;
 using VehicleFactory.Controllers.Resources;
 using VehicleFactory.Core;
 using VehicleFactory.Core.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace VehicleFactory.Controllers
 {
@@ -26,6 +27,7 @@ namespace VehicleFactory.Controllers
         }
 
         [HttpPost]
+        [Authorize]
         public async Task<IActionResult> CreateVehicle([FromBody] SaveVehicleResource vehicleResource)
         {
             //throw new Exception();
@@ -47,6 +49,7 @@ namespace VehicleFactory.Controllers
         }
 
         [HttpPut("{id}")]
+        [Authorize]
         public async Task<IActionResult> UpdateVehicle(int id, [FromBody] SaveVehicleResource vehicleResource)
         {
             if (!ModelState.IsValid)
@@ -68,6 +71,7 @@ namespace VehicleFactory.Controllers
         }
 
         [HttpDelete("{id}")]
+        [Authorize]
         public async Task<IActionResult> DeleteVehicle(int id)
         {
             var vehicle = await repository.GetVehicle(id, includeRelated: false);
