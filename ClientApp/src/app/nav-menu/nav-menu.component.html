@@ -28,11 +28,14 @@
             <a class="nav-link text-dark" [routerLink]="['/']">Home</a>
           </li>
           <li class="nav-item" [routerLinkActive]="['link-active']">
-            <a class="nav-link text-dark" [routerLink]="['/counter']"
-              >Counter</a
-            >
+            <a (click)="auth.login()" *ngIf="!auth.loggedIn">
+              <span>Login</span>
+            </a>
+            <a (click)="auth.logout()" *ngIf="auth.loggedIn">
+              Logout
+            </a>
           </li>
-          <li class="nav-item" [routerLinkActive]="['link-active']" [routerLinkActiveOptions]="{exact:true}" >
+          <li class="nav-item" [routerLinkActive]="['link-active']">
             <a class="nav-link text-dark" [routerLink]="['/vehicles']"
               >Vehicles</a
             >

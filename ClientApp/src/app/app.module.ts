@@ -21,6 +21,7 @@ import { CommonModule } from '@angular/common';
 import { VehicleListComponent } from './vehicle-list/vehicle-list.component';
 import { PaginationComponent } from './pagination/pagination.component';
 import { ViewVehicleComponent } from './view-vehicle/view-vehicle.component';
+import { AuthService } from 'src/services/auth.service';
 
 @NgModule({
   declarations: [
@@ -53,7 +54,8 @@ import { ViewVehicleComponent } from './view-vehicle/view-vehicle.component';
   ],
   providers: [
     { provide: ErrorHandler, useClass: AppErrorHandler },
-    VehicleService
+    VehicleService,
+    AuthService
   ],
   bootstrap: [AppComponent]
 })
